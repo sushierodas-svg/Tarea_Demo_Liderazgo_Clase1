@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea: Clase 1 – ¿Qué es un Líder?</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #244b5a 0%, #1a3848 60%, #993921 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .encabezado {
+            background: linear-gradient(135deg, #244b5a 0%, #1a3848 50%, #993921 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .encabezado::before {
+            content: '';
+            position: absolute; top: -40px; right: -40px;
+            width: 200px; height: 200px; border-radius: 50%;
+            background: rgba(247,190,0,0.1);
+        }
+        .encabezado::after {
+            content: '';
+            position: absolute; bottom: -25px; left: 30px;
+            width: 130px; height: 130px; border-radius: 50%;
+            background: rgba(219,96,21,0.12);
+        }
+        .encabezado .tag {
+            display: inline-block;
+            background: #f7be00; color: #244b5a;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+        }
+        .encabezado h1 {
+            font-size: 2.2em; margin-bottom: 8px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        .encabezado > p { font-size: 1em; opacity: 0.88; }
+        .reflexion-banner {
+            background: rgba(247,190,0,0.13);
+            border-left: 4px solid #f7be00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px; margin-top: 20px; text-align: left;
+            position: relative; z-index: 1;
+        }
+        .reflexion-banner .rb-label {
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: rgba(247,190,0,0.75); margin-bottom: 5px;
+        }
+        .reflexion-banner p { color: #f7be00; font-style: italic; font-size: 0.95em; opacity: 1; }
+
+        .contenido { padding: 36px 32px; }
+
+        /* INSTRUCCIONES */
+        .instruccion {
+            background: #f0f8ff; padding: 18px 22px;
+            border-left: 5px solid #db6015; border-radius: 6px;
+            margin-bottom: 14px; font-size: 0.95em; color: #333;
+        }
+        .instruccion strong { color: #db6015; }
+        .nota-entrega {
+            background: #e8f5ee; border-left: 5px solid #2e7d52;
+            border-radius: 6px; padding: 15px 20px; margin-bottom: 26px;
+            font-size: 0.93em; color: #1a4030;
+        }
+        .nota-entrega strong { color: #2e7d52; }
+
+        /* SECCIÓN */
+        .seccion { margin-bottom: 30px; }
+        .seccion h2 {
+            color: #244b5a; font-size: 1.4em; margin-bottom: 14px;
+            padding-bottom: 8px; border-bottom: 3px solid #db6015;
+        }
+
+        /* TARJETA PREGUNTA */
+        .pregunta-card {
+            background: #fafcfe; border: 1.5px solid #d0dfe8;
+            border-radius: 10px; padding: 20px; margin-bottom: 18px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .pregunta-card:focus-within {
+            border-color: #db6015;
+            box-shadow: 0 4px 16px rgba(219,96,21,0.1);
+        }
+        .pregunta-header {
+            display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
+        }
+        .pregunta-num {
+            min-width: 34px; height: 34px;
+            background: linear-gradient(135deg, #db6015, #993921);
+            color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700; flex-shrink: 0;
+        }
+        .pregunta-texto { font-size: 1em; font-weight: 600; color: #244b5a; line-height: 1.5; }
+        .pregunta-hint { font-size: 0.85em; color: #7a9aaa; font-style: italic; font-weight: 400; margin-top: 3px; }
+
+        .texto-respuesta {
+            width: 100%; min-height: 100px;
+            border: 1.5px solid #d0dfe8; border-radius: 8px;
+            padding: 12px 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95em; line-height: 1.6; color: #333;
+            background: white; resize: vertical; transition: border-color 0.2s;
+        }
+        .texto-respuesta:focus { outline: none; border-color: #db6015; }
+        .texto-respuesta::placeholder { color: #b0c4ce; }
+
+        .contador-texto {
+            display: flex; gap: 16px; margin-top: 8px;
+            font-size: 0.85em; color: #7a9aaa; font-weight: 600;
+        }
+        .contador-num {
+            background: #244b5a; color: white;
+            padding: 2px 10px; border-radius: 12px; font-size: 0.85em;
+        }
+        .contador-num.ok { background: #2e7d52; }
+        .contador-num.warn { background: #db6015; }
+
+        /* IF-THEN */
+        .ifthen-box {
+            background: #f0f8ff; border: 1.5px dashed #b8d0dc;
+            border-radius: 10px; padding: 16px; margin-top: 4px;
+        }
+        .ifthen-fila {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 12px; flex-wrap: wrap;
+        }
+        .ifthen-fila:last-child { margin-bottom: 0; }
+        .ifthen-etiqueta {
+            background: #244b5a; color: white;
+            font-size: 0.82em; font-weight: 700;
+            padding: 5px 13px; border-radius: 20px; white-space: nowrap;
+        }
+        .ifthen-input {
+            flex: 1; min-width: 200px;
+            border: 1.5px solid #d0dfe8; border-radius: 8px;
+            padding: 9px 12px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.93em; color: #333; background: white;
+            transition: border-color 0.2s;
+        }
+        .ifthen-input:focus { outline: none; border-color: #db6015; }
+        .ifthen-input::placeholder { color: #b0c4ce; }
+
+        /* REFLEXIÓN FINAL */
+        .reflexion-card {
+            background: linear-gradient(135deg, #244b5a, #1c3a49);
+            border-radius: 12px; padding: 26px; margin-bottom: 28px;
+        }
+        .reflexion-card .r-tag {
+            display: inline-block; background: rgba(247,190,0,0.2); color: #f7be00;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            padding: 3px 11px; border-radius: 20px; margin-bottom: 12px;
+        }
+        .reflexion-card .r-pregunta {
+            color: white; font-size: 1.05em; font-weight: 600;
+            line-height: 1.5; margin-bottom: 14px;
+        }
+        .reflexion-card textarea {
+            width: 100%; min-height: 90px;
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 8px; padding: 11px 13px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95em; color: white; line-height: 1.6; resize: vertical;
+            transition: border-color 0.2s;
+        }
+        .reflexion-card textarea:focus { outline: none; border-color: #f7be00; }
+        .reflexion-card textarea::placeholder { color: rgba(255,255,255,0.3); }
+        .contador-claro { text-align: right; font-size: 0.8em; color: rgba(255,255,255,0.4); margin-top: 5px; }
+
+        /* BOTONES */
+        .botones-accion { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn-evaluar {
+            flex: 1; min-width: 200px; padding: 16px 24px;
+            background: linear-gradient(135deg, #db6015, #993921);
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1em; font-weight: 700; border: none; border-radius: 12px; cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(219,96,21,0.35);
+        }
+        .btn-evaluar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(219,96,21,0.4); }
+        .btn-evaluar:active { transform: translateY(0); }
+        .btn-evaluar:disabled { background: linear-gradient(135deg,#aaa,#888); box-shadow:none; cursor:not-allowed; }
+        .btn-reiniciar {
+            padding: 16px 22px; background: transparent; color: #993921;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95em; font-weight: 600;
+            border: 2px solid #993921; border-radius: 12px; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-reiniciar:hover { background: rgba(153,57,33,0.07); }
+
+        /* RESULTADO */
+        .resultado-final { display: none; margin-top: 10px; }
+        .resultado-final.mostrar { display: block; }
+        .resultado-header {
+            background: linear-gradient(135deg, #2e7d52, #1e6040);
+            border-radius: 12px 12px 0 0; padding: 22px 26px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .resultado-header .icon { font-size: 32px; }
+        .resultado-header h3 { color: white; font-size: 1.3em; }
+        .resultado-header p { color: rgba(255,255,255,0.78); font-size: 0.88em; margin-top: 2px; }
+        .resultado-cuerpo {
+            border: 2px solid #2e7d52; border-top: none;
+            border-radius: 0 0 12px 12px; padding: 26px;
+        }
+        .criterio-item {
+            background: #e8f5ee; border-left: 4px solid #2e7d52;
+            border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 13px;
+        }
+        .criterio-titulo { font-weight: 700; color: #1e6040; margin-bottom: 5px; font-size: 0.95em; }
+        .criterio-calificacion { color: #333; font-size: 0.92em; line-height: 1.5; }
+        .criterio-recomendacion {
+            margin-top: 10px; padding: 10px 12px;
+            background: #fff9e6; border-left: 3px solid #f7be00; border-radius: 4px;
+            font-size: 0.88em; color: #555;
+        }
+        .criterio-recomendacion strong { color: #db6015; }
+        .mensaje-general {
+            background: linear-gradient(135deg, #e8f5ee, #d4ece0);
+            border: 1px solid #b8dcc8; border-radius: 10px;
+            padding: 18px 20px; margin-top: 16px;
+            font-size: 1em; color: #1a4030; font-weight: 600; line-height: 1.6;
+        }
+        .descarga-zona {
+            margin-top: 20px; padding-top: 20px;
+            border-top: 2px dashed #d0dfe8;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .descarga-zona p { font-size: 0.9em; color: #4a6070; text-align: center; }
+        .btn-descargar {
+            width: 100%; padding: 16px 24px;
+            background: linear-gradient(135deg, #244b5a, #1a3848);
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1em; font-weight: 700; border: none; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(36,75,90,0.3);
+        }
+        .btn-descargar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(36,75,90,0.4); }
+        .btn-descargar:disabled { background: linear-gradient(135deg,#aaa,#888); box-shadow:none; cursor:not-allowed; }
+
+        /* DOCUMENTO PARA DESCARGAR */
+        #docuParaDescargar {
+            position: absolute; left: -9999px; top: 0;
+            width: 820px; background: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 0;
+        }
+
+        .pie-pagina {
+            text-align: center; padding: 18px;
+            font-size: 0.8em; color: #aabbc8;
+            border-top: 1px solid #e8eef2; margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .contenido { padding: 22px 16px; }
+            .encabezado h1 { font-size: 1.6em; }
+            .botones-accion { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <!-- HEADER -->
+    <div class="encabezado">
+        <div class="tag">Liderazgo · Clase 1</div>
+        <h1>¿Qué es un Líder?</h1>
+        <p>Tarea de Reflexión Personal &nbsp;·&nbsp; Sin puntaje numérico</p>
+        <div class="reflexion-banner">
+            <p class="rb-label">🧭 Pregunta guía de esta clase</p>
+            <p>"Si nadie te viera y nadie te aplaudiera… ¿qué tipo de líder elegirías ser igual?"</p>
+        </div>
+    </div>
+
+    <div class="contenido">
+
+        <div class="instruccion">
+            📋 <strong>Instrucciones:</strong> Esta tarea no tiene puntaje numérico. Responde con sinceridad las 5 preguntas y la reflexión final. Cuando termines, presiona <strong>"Obtener retroalimentación"</strong>. Luego descarga tu reporte y <strong>compártelo con tu tutor en la plataforma del curso</strong>.
+        </div>
+        <div class="nota-entrega">
+            📤 <strong>¿Cómo entregar?</strong> Descarga tu reporte como imagen y súbelo en la sección de tareas de tu aula virtual, o compártelo con tu tutor según las instrucciones de tu clase.
+        </div>
+
+        <div class="seccion">
+            <h2>✏️ Preguntas de reflexión</h2>
+
+            <!-- P1 -->
+            <div class="pregunta-card">
+                <div class="pregunta-header">
+                    <div class="pregunta-num">1</div>
+                    <div>
+                        <div class="pregunta-texto">¿Qué creías que era "ser líder" antes de esta clase y qué cambia con la definición "influir con responsabilidad para construir"?</div>
+                        <div class="pregunta-hint">Escribe entre 2 y 4 líneas.</div>
+                    </div>
+                </div>
+                <textarea class="texto-respuesta" id="p1" rows="4"
+                    placeholder="Antes pensaba que un líder era alguien que…"
+                    oninput="actualizarContador('p1','c1p','c1w')"></textarea>
+                <div class="contador-texto">
+                    <span>Palabras: <span class="contador-num" id="c1w">0</span></span>
+                    <span>Caracteres: <span class="contador-num" id="c1p">0</span></span>
+                </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="pregunta-card">
+                <div class="pregunta-header">
+                    <div class="pregunta-num">2</div>
+                    <div>
+                        <div class="pregunta-texto">Escribe un ejemplo real (de tu vida o digital) donde tú influiste en alguien para bien o para mal.</div>
+                        <div class="pregunta-hint">¿Qué hiciste y qué efecto tuvo?</div>
+                    </div>
+                </div>
+                <textarea class="texto-respuesta" id="p2" rows="5"
+                    placeholder="Una vez, en mi grupo de amigos / en redes sociales…"
+                    oninput="actualizarContador('p2','c2p','c2w')"></textarea>
+                <div class="contador-texto">
+                    <span>Palabras: <span class="contador-num" id="c2w">0</span></span>
+                    <span>Caracteres: <span class="contador-num" id="c2p">0</span></span>
+                </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="pregunta-card">
+                <div class="pregunta-header">
+                    <div class="pregunta-num">3</div>
+                    <div>
+                        <div class="pregunta-texto">¿Qué área te cuesta más liderar hoy: decisiones, tiempo, emociones, palabra, hábitos o respeto?</div>
+                        <div class="pregunta-hint">Explica por qué (2–4 líneas).</div>
+                    </div>
+                </div>
+                <textarea class="texto-respuesta" id="p3" rows="4"
+                    placeholder="Me cuesta más liderar mis… porque…"
+                    oninput="actualizarContador('p3','c3p','c3w')"></textarea>
+                <div class="contador-texto">
+                    <span>Palabras: <span class="contador-num" id="c3w">0</span></span>
+                    <span>Caracteres: <span class="contador-num" id="c3p">0</span></span>
+                </div>
+            </div>
+
+            <!-- P4 -->
+            <div class="pregunta-card">
+                <div class="pregunta-header">
+                    <div class="pregunta-num">4</div>
+                    <div>
+                        <div class="pregunta-texto">Escribe una mini-regla personal que te gustaría vivir este mes.</div>
+                        <div class="pregunta-hint">Ej.: "no respondo en caliente", "cumplo lo que prometo", "uso redes con intención".</div>
+                    </div>
+                </div>
+                <textarea class="texto-respuesta" id="p4" rows="3"
+                    placeholder="Mi mini-regla para este mes es…"
+                    oninput="actualizarContador('p4','c4p','c4w')"></textarea>
+                <div class="contador-texto">
+                    <span>Palabras: <span class="contador-num" id="c4w">0</span></span>
+                    <span>Caracteres: <span class="contador-num" id="c4p">0</span></span>
+                </div>
+            </div>
+
+            <!-- P5 -->
+            <div class="pregunta-card">
+                <div class="pregunta-header">
+                    <div class="pregunta-num">5</div>
+                    <div>
+                        <div class="pregunta-texto">Acción 24 horas — completa la frase "Si… entonces…" con algo realista y concreto.</div>
+                        <div class="pregunta-hint">Piensa en un impulso frecuente y una acción pequeña concreta en su lugar.</div>
+                    </div>
+                </div>
+                <div class="ifthen-box">
+                    <div class="ifthen-fila">
+                        <span class="ifthen-etiqueta">Si mañana me aparece el impulso de…</span>
+                        <input class="ifthen-input" type="text" id="p5a"
+                            placeholder="Ej.: revisar el teléfono sin razón"
+                            oninput="validarFormulario()">
+                    </div>
+                    <div class="ifthen-fila">
+                        <span class="ifthen-etiqueta">…entonces haré…</span>
+                        <input class="ifthen-input" type="text" id="p5b"
+                            placeholder="Ej.: respirar 3 veces y anotar lo que siento"
+                            oninput="validarFormulario()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REFLEXIÓN FINAL -->
+        <div class="reflexion-card">
+            <span class="r-tag">🌟 Reflexión final</span>
+            <p class="r-pregunta">"Si nadie te viera y nadie te aplaudiera… ¿qué tipo de líder elegirías ser igual?"</p>
+            <textarea id="pref" rows="4"
+                placeholder="Elegiría ser un líder que…"
+                oninput="actualizarContadorClaro('pref','cref')"></textarea>
+            <div class="contador-claro" id="cref">0 palabras</div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="botones-accion">
+            <button class="btn-evaluar" id="btnEvaluar" onclick="evaluarTarea()" disabled>
+                💬 Obtener retroalimentación
+            </button>
+            <button class="btn-reiniciar" onclick="reiniciar()">🔄 Limpiar</button>
+        </div>
+
+        <!-- RESULTADO -->
+        <div class="resultado-final" id="resultadoFinal">
+            <div class="resultado-header">
+                <div class="icon">✅</div>
+                <div>
+                    <h3>Retroalimentación de tu Tarea</h3>
+                    <p>Clase 1: ¿Qué es un Líder? &nbsp;·&nbsp; Liderazgo</p>
+                </div>
+            </div>
+            <div class="resultado-cuerpo">
+                <div id="criteriosEvaluacion"></div>
+                <div class="mensaje-general" id="mensajeGeneral"></div>
+                <div class="descarga-zona">
+                    <p>📤 Descarga tu reporte como imagen y compártelo con tu tutor en la plataforma del curso.</p>
+                    <button class="btn-descargar" id="btnDescargar" onclick="descargarReporte()">
+                        💾 Descargar mi reporte
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pie-pagina">
+        Liderazgo · Clase 1: ¿Qué es un Líder? · Material educativo interactivo
+    </div>
+
+</div>
+
+<!-- DOCUMENTO PARA DESCARGAR (fuera de pantalla) -->
+<div id="docuParaDescargar">
+    <!-- Header del reporte -->
+    <div style="background:linear-gradient(135deg,#244b5a,#993921);color:white;padding:36px 30px;text-align:center;">
+        <div style="display:inline-block;background:#f7be00;color:#244b5a;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:12px;">Liderazgo · Clase 1</div>
+        <h1 style="font-size:1.8em;margin-bottom:6px;">¿Qué es un Líder?</h1>
+        <p style="opacity:0.85;font-size:0.9em;">Reporte de Tarea · Reflexión Personal</p>
+        <div style="background:rgba(247,190,0,0.15);border-left:4px solid #f7be00;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:18px;text-align:left;">
+            <p style="color:#f7be00;font-style:italic;font-size:0.88em;">"Si nadie te viera y nadie te aplaudiera… ¿qué tipo de líder elegirías ser igual?"</p>
+        </div>
+    </div>
+    <!-- Info estudiante -->
+    <div style="padding:24px 30px 0;">
+        <div style="display:flex;gap:30px;background:#f0f8ff;border-radius:8px;padding:14px 18px;margin-bottom:24px;">
+            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Estudiante</span><br><strong id="pdfEstudiante" style="color:#244b5a;">—</strong></div>
+            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Fecha</span><br><strong id="pdfFecha" style="color:#244b5a;">—</strong></div>
+            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Materia</span><br><strong style="color:#244b5a;">Liderazgo</strong></div>
+        </div>
+        <!-- Respuestas -->
+        <h3 style="color:#244b5a;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #db6015;padding-bottom:6px;">📝 Respuestas del estudiante</h3>
+        <div id="pdfRespuestas"></div>
+        <!-- Retroalimentación -->
+        <h3 style="color:#244b5a;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #2e7d52;padding-bottom:6px;margin-top:24px;">💬 Retroalimentación</h3>
+        <div id="pdfCriterios"></div>
+        <div id="pdfMensaje" style="background:linear-gradient(135deg,#e8f5ee,#d4ece0);border:1px solid #b8dcc8;border-radius:8px;padding:14px 16px;margin-top:12px;font-weight:600;color:#1a4030;font-size:0.88em;line-height:1.5;"></div>
+        <div style="margin-top:22px;padding:14px;border-top:1px solid #e0e8ef;text-align:center;font-size:0.75em;color:#aabbc8;">
+            Liderazgo · Clase 1: ¿Qué es un Líder? · Material educativo interactivo
+        </div>
+    </div>
+</div>
+
+<script>
+    function contarPalabras(texto) {
+        return texto.trim() === '' ? 0 : texto.trim().split(/\s+/).length;
+    }
+
+    function actualizarContador(idTexto, idChar, idWord) {
+        const val = document.getElementById(idTexto).value;
+        const words = contarPalabras(val);
+        const chars = val.length;
+        const elW = document.getElementById(idWord);
+        const elC = document.getElementById(idChar);
+        elW.textContent = words;
+        elC.textContent = chars;
+        elW.className = 'contador-num' + (words >= 15 ? ' ok' : words >= 7 ? ' warn' : '');
+        validarFormulario();
+    }
+
+    function actualizarContadorClaro(idTexto, idContador) {
+        document.getElementById(idContador).textContent = contarPalabras(document.getElementById(idTexto).value) + ' palabras';
+        validarFormulario();
+    }
+
+    function validarFormulario() {
+        const lleno = (id) => document.getElementById(id).value.trim().length > 0;
+        const ok = lleno('p1') && lleno('p2') && lleno('p3') && lleno('p4')
+                && lleno('p5a') && lleno('p5b') && lleno('pref');
+        document.getElementById('btnEvaluar').disabled = !ok;
+    }
+
+    function evaluarTarea() {
+        const p1   = document.getElementById('p1').value.trim();
+        const p2   = document.getElementById('p2').value.trim();
+        const p3   = document.getElementById('p3').value.trim();
+        const p4   = document.getElementById('p4').value.trim();
+        const p5a  = document.getElementById('p5a').value.trim();
+        const p5b  = document.getElementById('p5b').value.trim();
+        const pref = document.getElementById('pref').value.trim();
+
+        const criterios = [];
+
+        // P1
+        const w1 = contarPalabras(p1);
+        const mencionaCambio = /cambia|ahora|antes|nueva|diferente|responsab|construir|influir/i.test(p1);
+        if (w1 >= 30 && mencionaCambio) {
+            criterios.push({ titulo: '✅ Pregunta 1 · Reflexión excelente', cal: 'Tu respuesta muestra un cambio genuino en tu comprensión del liderazgo. Conectas muy bien el "antes" con la nueva definición.', rec: '' });
+        } else if (w1 >= 15) {
+            criterios.push({ titulo: '✅ Pregunta 1 · Buena reflexión', cal: 'Respondiste con buena extensión y demuestra comprensión del tema.', rec: 'Intenta conectar más explícitamente qué cambió entre tu idea anterior y la nueva definición.' });
+        } else {
+            criterios.push({ titulo: '⚠️ Pregunta 1 · Reflexión breve', cal: 'Tu respuesta es corta. Es un buen comienzo.', rec: 'Escribe 2–4 líneas: ¿qué pensabas antes del liderazgo y qué te hizo cambiar esa idea?' });
+        }
+
+        // P2
+        const w2 = contarPalabras(p2);
+        const tieneEfecto = /efecto|resultado|cambió|reaccionó|sintió|pasó|después|entonces|porque|logré|logro|mejoró|aprendió/i.test(p2);
+        if (w2 >= 30 && tieneEfecto) {
+            criterios.push({ titulo: '✅ Pregunta 2 · Ejemplo completo y concreto', cal: 'Describiste un ejemplo real con detalle y mencionaste el efecto de tu influencia. Muy bien hecho.', rec: '' });
+        } else if (w2 >= 15) {
+            criterios.push({ titulo: '✅ Pregunta 2 · Buen ejemplo', cal: 'Diste un ejemplo concreto y honesto.', rec: 'La próxima vez, intenta describir también el efecto o resultado que tuvo tu influencia en la otra persona.' });
+        } else {
+            criterios.push({ titulo: '⚠️ Pregunta 2 · Ejemplo muy breve', cal: 'Mencionaste un ejemplo pero con poca extensión.', rec: 'Expándelo: ¿qué pasó exactamente y qué efecto tuvo en la otra persona?' });
+        }
+
+        // P3
+        const w3 = contarPalabras(p3);
+        const tieneArea = /decisiones|tiempo|emociones|palabra|hábitos|habitos|respeto/i.test(p3);
+        if (w3 >= 20 && tieneArea) {
+            criterios.push({ titulo: '✅ Pregunta 3 · Autoconocimiento claro', cal: 'Identificaste con claridad el área que más te cuesta y explicaste el porqué. El autoconocimiento es el primer paso para liderar mejor.', rec: '' });
+        } else if (w3 >= 10) {
+            criterios.push({ titulo: '✅ Pregunta 3 · Buena identificación', cal: 'Nombraste el área que te cuesta. Eso ya es un gran paso de honestidad.', rec: 'Explica con más detalle por qué esa área te resulta difícil. Eso te ayudará a mejorarla.' });
+        } else {
+            criterios.push({ titulo: '⚠️ Pregunta 3 · Respuesta muy breve', cal: 'Tu respuesta es muy corta.', rec: 'Elige una de las áreas (decisiones, tiempo, emociones, palabra, hábitos, respeto) y explica en 2–3 líneas por qué te cuesta más.' });
+        }
+
+        // P4
+        const w4 = contarPalabras(p4);
+        const esRegla = /no |siempre |nunca |cada |voy a |prometo |haré |usaré |evitar|cumplo|cuando|antes de/i.test(p4);
+        if (w4 >= 5 && esRegla) {
+            criterios.push({ titulo: '✅ Pregunta 4 · Mini-regla poderosa', cal: 'Tu mini-regla es concreta y tiene forma de compromiso. Ese tipo de reglas son las que realmente se cumplen.', rec: '' });
+        } else if (w4 >= 3) {
+            criterios.push({ titulo: '✅ Pregunta 4 · Mini-regla creada', cal: 'Propusiste una mini-regla personal. ¡Bien!', rec: 'Intenta escribirla como una acción concreta: "no respondo en caliente", "cumplo lo que prometo".' });
+        } else {
+            criterios.push({ titulo: '⚠️ Pregunta 4 · Regla muy corta', cal: 'Tu mini-regla necesita un poco más de desarrollo.', rec: 'Escribe una frase completa como mini-compromiso personal para este mes.' });
+        }
+
+        // P5
+        const w5a = contarPalabras(p5a);
+        const w5b = contarPalabras(p5b);
+        if (w5a >= 3 && w5b >= 3) {
+            criterios.push({ titulo: '✅ Pregunta 5 · Plan Si–Entonces completo', cal: 'Tu plan de acción es concreto y realista. El "Si… entonces…" es una de las herramientas más eficaces para cambiar hábitos.', rec: '' });
+        } else if (w5a >= 2 || w5b >= 2) {
+            criterios.push({ titulo: '⚠️ Pregunta 5 · Plan incompleto', cal: 'Comenzaste bien el plan Si–Entonces.', rec: 'Asegúrate de que ambas partes sean concretas y específicas. Cuanto más claro sea, más fácil es cumplirlo.' });
+        } else {
+            criterios.push({ titulo: '⚠️ Pregunta 5 · Plan muy breve', cal: 'Tu plan Si–Entonces es muy corto.', rec: 'Escribe un impulso real que te aparezca frecuentemente y una acción pequeña y concreta para reemplazarlo.' });
+        }
+
+        // Reflexión final
+        const wRef = contarPalabras(pref);
+        const tieneValor = /honesto|honesta|justo|justa|responsab|empático|empática|íntegro|íntegra|verdad|mismo|congruente|presente|auténtico|auténtica|bien|correcto|ejemplo|sirva|ayud/i.test(pref);
+        if (wRef >= 15 && tieneValor) {
+            criterios.push({ titulo: '🌟 Reflexión final · Muy profunda', cal: 'Tu respuesta muestra comprensión profunda de lo que significa liderar desde adentro, no solo para los demás. Eso es liderazgo auténtico.', rec: '' });
+        } else if (wRef >= 8) {
+            criterios.push({ titulo: '🌟 Reflexión final · Buena reflexión', cal: 'Tu reflexión es honesta y significativa.', rec: 'Intenta describir el valor o principio que guiaría tu liderazgo aunque nadie te observe ni te aplauda.' });
+        } else {
+            criterios.push({ titulo: '🌟 Reflexión final · Reflexión breve', cal: 'Tu reflexión está presente. ¡Eso cuenta!', rec: 'Expándela: ¿qué tipo de líder serías si nadie te observara? ¿Qué valor o principio te guiaría?' });
+        }
+
+        // Mensaje general
+        const excelentes = criterios.filter(c => c.rec === '').length;
+        let mensaje = '';
+        if (excelentes >= 6) {
+            mensaje = '🌟 ¡Excelente trabajo! Todas tus respuestas muestran reflexión genuina y profunda. Ese nivel de honestidad contigo mismo o misma es exactamente lo que hace a un líder auténtico. ¡Sigue así!';
+        } else if (excelentes >= 4) {
+            mensaje = '👍 ¡Muy bien hecho! La mayoría de tus respuestas demuestran reflexión real y honestidad. Revisa las sugerencias en las preguntas con ⚠️ para seguir creciendo. ¡Vas por muy buen camino!';
+        } else if (excelentes >= 2) {
+            mensaje = '📖 Buen esfuerzo. Algunas de tus respuestas muestran reflexión genuina. Lee las sugerencias y considera ampliar tus respuestas más breves. ¡Cada intento te hace crecer como líder!';
+        } else {
+            mensaje = '💪 Diste el primer paso al completar la tarea. Revisa las sugerencias en cada pregunta y tómate un momento para profundizar. ¡El liderazgo comienza con la honestidad hacia uno mismo!';
+        }
+
+        // Render en pantalla
+        let criteriosHTML = '';
+        criterios.forEach(c => {
+            const recHTML = c.rec ? `<div class="criterio-recomendacion"><strong>💡 Para seguir creciendo:</strong> ${c.rec}</div>` : '';
+            criteriosHTML += `<div class="criterio-item"><div class="criterio-titulo">${c.titulo}</div><div class="criterio-calificacion">${c.cal}</div>${recHTML}</div>`;
+        });
+        document.getElementById('criteriosEvaluacion').innerHTML = criteriosHTML;
+        document.getElementById('mensajeGeneral').textContent = mensaje;
+
+        // Preparar reporte PDF
+        const hoy = new Date().toLocaleDateString('es-GT', { year:'numeric', month:'long', day:'numeric' });
+        document.getElementById('pdfFecha').textContent = hoy;
+
+        const preguntasLbl = [
+            '¿Qué creías que era "ser líder" antes de esta clase?',
+            'Ejemplo real donde influiste en alguien:',
+            'Área que más te cuesta liderar hoy:',
+            'Mini-regla personal para este mes:',
+            'Acción Si–Entonces (24 horas):',
+            'Reflexión final:'
+        ];
+        const respuestas = [p1, p2, p3, p4, `Si me aparece el impulso de: "${p5a}" → entonces haré: "${p5b}"`, pref];
+
+        let respHTML = '';
+        preguntasLbl.forEach((lbl, i) => {
+            respHTML += `<div style="margin-bottom:12px;padding:10px 13px;background:#f8fafc;border-left:4px solid #db6015;border-radius:0 6px 6px 0;">
+                <p style="font-size:0.72em;color:#db6015;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">${lbl}</p>
+                <p style="font-size:0.85em;color:#333;line-height:1.5;">${respuestas[i]}</p>
+            </div>`;
+        });
+        document.getElementById('pdfRespuestas').innerHTML = respHTML;
+
+        let pdfCriteriosHTML = '';
+        criterios.forEach(c => {
+            const recPDF = c.rec ? `<p style="margin-top:7px;padding:7px 10px;background:#fff9e6;border-left:3px solid #f7be00;font-size:0.8em;color:#555;"><strong>💡 Para seguir creciendo:</strong> ${c.rec}</p>` : '';
+            pdfCriteriosHTML += `<div style="margin-bottom:10px;padding:10px 13px;background:#e8f5ee;border-left:4px solid #2e7d52;border-radius:0 6px 6px 0;">
+                <p style="font-weight:700;color:#1e6040;margin-bottom:3px;font-size:0.85em;">${c.titulo}</p>
+                <p style="font-size:0.83em;color:#333;line-height:1.5;">${c.cal}</p>
+                ${recPDF}
+            </div>`;
+        });
+        document.getElementById('pdfCriterios').innerHTML = pdfCriteriosHTML;
+        document.getElementById('pdfMensaje').textContent = mensaje;
+
+        // Mostrar resultado
+        document.getElementById('resultadoFinal').classList.add('mostrar');
+        setTimeout(() => document.getElementById('resultadoFinal').scrollIntoView({ behavior:'smooth' }), 300);
+    }
+
+    function descargarReporte() {
+        const nombre = prompt('Escribe tu nombre para incluirlo en el reporte:');
+        if (!nombre || nombre.trim() === '') {
+            alert('Debes ingresar tu nombre para descargar el reporte.');
+            return;
+        }
+        document.getElementById('pdfEstudiante').textContent = nombre.trim();
+
+        const btn = document.getElementById('btnDescargar');
+        btn.disabled = true;
+        btn.textContent = '⏳ Generando reporte…';
+
+        setTimeout(() => {
+            html2canvas(document.getElementById('docuParaDescargar'), {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png', 0.95);
+                link.download = `Liderazgo_Clase1_${nombre.trim().replace(/\s+/g,'_')}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                btn.disabled = false;
+                btn.textContent = '💾 Descargar mi reporte';
+                alert('✅ Reporte descargado como imagen PNG.\n\nCompártelo con tu tutor en la plataforma del curso.');
+            }).catch(err => {
+                btn.disabled = false;
+                btn.textContent = '💾 Descargar mi reporte';
+                alert('❌ Error al generar el reporte. Intenta nuevamente.\n\n' + err.message);
+            });
+        }, 300);
+    }
+
+    function reiniciar() {
+        if (!confirm('¿Deseas limpiar todas las respuestas? Se perderá lo que escribiste.')) return;
+        ['p1','p2','p3','p4','pref'].forEach(id => document.getElementById(id).value = '');
+        ['p5a','p5b'].forEach(id => document.getElementById(id).value = '');
+        ['c1w','c2w','c3w','c4w'].forEach(id => { const el=document.getElementById(id); el.textContent='0'; el.className='contador-num'; });
+        ['c1p','c2p','c3p','c4p'].forEach(id => document.getElementById(id).textContent='0');
+        document.getElementById('cref').textContent = '0 palabras';
+        document.getElementById('resultadoFinal').classList.remove('mostrar');
+        document.getElementById('btnEvaluar').disabled = true;
+        window.scrollTo({ top:0, behavior:'smooth' });
+    }
+
+    // Init
+    document.getElementById('pdfFecha').textContent = new Date().toLocaleDateString('es-GT');
+</script>
+</body>
+</html>
