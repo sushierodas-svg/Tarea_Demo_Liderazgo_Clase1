@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarea: Clase 1 – ¿Qué es un Líder?</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #244b5a 0%, #1a3848 60%, #993921 100%);
+            background: linear-gradient(135deg, #0F2747 0%, #071b36 60%, #0a1f3d 100%);
             padding: 20px;
             min-height: 100vh;
         }
@@ -28,7 +29,7 @@
 
         /* HEADER */
         .encabezado {
-            background: linear-gradient(135deg, #244b5a 0%, #1a3848 50%, #993921 100%);
+            background: linear-gradient(135deg, #0F2747 0%, #071b36 50%, #0a1f3d 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
@@ -49,7 +50,7 @@
         }
         .encabezado .tag {
             display: inline-block;
-            background: #f7be00; color: #244b5a;
+            background: #C9A34E; color: #0F2747;
             font-size: 11px; font-weight: 700;
             letter-spacing: 1.5px; text-transform: uppercase;
             padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
@@ -60,8 +61,8 @@
         }
         .encabezado > p { font-size: 1em; opacity: 0.88; }
         .reflexion-banner {
-            background: rgba(247,190,0,0.13);
-            border-left: 4px solid #f7be00;
+            background: rgba(201,163,78,0.13);
+            border-left: 4px solid #C9A34E;
             border-radius: 0 10px 10px 0;
             padding: 14px 18px; margin-top: 20px; text-align: left;
             position: relative; z-index: 1;
@@ -69,19 +70,19 @@
         .reflexion-banner .rb-label {
             font-size: 10px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px;
-            color: rgba(247,190,0,0.75); margin-bottom: 5px;
+            color: rgba(201,163,78,0.85); margin-bottom: 5px;
         }
-        .reflexion-banner p { color: #f7be00; font-style: italic; font-size: 0.95em; opacity: 1; }
+        .reflexion-banner p { color: #C9A34E; font-style: italic; font-size: 0.95em; opacity: 1; }
 
         .contenido { padding: 36px 32px; }
 
         /* INSTRUCCIONES */
         .instruccion {
-            background: #f0f8ff; padding: 18px 22px;
-            border-left: 5px solid #db6015; border-radius: 6px;
+            background: #F7F2E8; padding: 18px 22px;
+            border-left: 5px solid #C9A34E; border-radius: 6px;
             margin-bottom: 14px; font-size: 0.95em; color: #333;
         }
-        .instruccion strong { color: #db6015; }
+        .instruccion strong { color: #C9A34E; }
         .nota-entrega {
             background: #e8f5ee; border-left: 5px solid #2e7d52;
             border-radius: 6px; padding: 15px 20px; margin-bottom: 26px;
@@ -92,8 +93,8 @@
         /* SECCIÓN */
         .seccion { margin-bottom: 30px; }
         .seccion h2 {
-            color: #244b5a; font-size: 1.4em; margin-bottom: 14px;
-            padding-bottom: 8px; border-bottom: 3px solid #db6015;
+            color: #0F2747; font-size: 1.4em; margin-bottom: 14px;
+            padding-bottom: 8px; border-bottom: 3px solid #C9A34E;
         }
 
         /* TARJETA PREGUNTA */
@@ -103,31 +104,31 @@
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         .pregunta-card:focus-within {
-            border-color: #db6015;
-            box-shadow: 0 4px 16px rgba(219,96,21,0.1);
+            border-color: #C9A34E;
+            box-shadow: 0 4px 16px rgba(201,163,78,0.15);
         }
         .pregunta-header {
             display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
         }
         .pregunta-num {
             min-width: 34px; height: 34px;
-            background: linear-gradient(135deg, #db6015, #993921);
+            background: linear-gradient(135deg, #C9A34E, #8a7040);
             color: white; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 14px; font-weight: 700; flex-shrink: 0;
         }
-        .pregunta-texto { font-size: 1em; font-weight: 600; color: #244b5a; line-height: 1.5; }
+        .pregunta-texto { font-size: 1em; font-weight: 600; color: #0F2747; line-height: 1.5; }
         .pregunta-hint { font-size: 0.85em; color: #7a9aaa; font-style: italic; font-weight: 400; margin-top: 3px; }
 
         .texto-respuesta {
             width: 100%; min-height: 100px;
             border: 1.5px solid #d0dfe8; border-radius: 8px;
             padding: 12px 14px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 0.95em; line-height: 1.6; color: #333;
             background: white; resize: vertical; transition: border-color 0.2s;
         }
-        .texto-respuesta:focus { outline: none; border-color: #db6015; }
+        .texto-respuesta:focus { outline: none; border-color: #C9A34E; }
         .texto-respuesta::placeholder { color: #b0c4ce; }
 
         .contador-texto {
@@ -135,15 +136,15 @@
             font-size: 0.85em; color: #7a9aaa; font-weight: 600;
         }
         .contador-num {
-            background: #244b5a; color: white;
+            background: #0F2747; color: white;
             padding: 2px 10px; border-radius: 12px; font-size: 0.85em;
         }
         .contador-num.ok { background: #2e7d52; }
-        .contador-num.warn { background: #db6015; }
+        .contador-num.warn { background: #C9A34E; }
 
         /* IF-THEN */
         .ifthen-box {
-            background: #f0f8ff; border: 1.5px dashed #b8d0dc;
+            background: #F7F2E8; border: 1.5px dashed #C9A34E;
             border-radius: 10px; padding: 16px; margin-top: 4px;
         }
         .ifthen-fila {
@@ -152,7 +153,7 @@
         }
         .ifthen-fila:last-child { margin-bottom: 0; }
         .ifthen-etiqueta {
-            background: #244b5a; color: white;
+            background: #0F2747; color: white;
             font-size: 0.82em; font-weight: 700;
             padding: 5px 13px; border-radius: 20px; white-space: nowrap;
         }
@@ -160,20 +161,20 @@
             flex: 1; min-width: 200px;
             border: 1.5px solid #d0dfe8; border-radius: 8px;
             padding: 9px 12px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 0.93em; color: #333; background: white;
             transition: border-color 0.2s;
         }
-        .ifthen-input:focus { outline: none; border-color: #db6015; }
+        .ifthen-input:focus { outline: none; border-color: #C9A34E; }
         .ifthen-input::placeholder { color: #b0c4ce; }
 
         /* REFLEXIÓN FINAL */
         .reflexion-card {
-            background: linear-gradient(135deg, #244b5a, #1c3a49);
+            background: linear-gradient(135deg, #0F2747, #071b36);
             border-radius: 12px; padding: 26px; margin-bottom: 28px;
         }
         .reflexion-card .r-tag {
-            display: inline-block; background: rgba(247,190,0,0.2); color: #f7be00;
+            display: inline-block; background: rgba(201,163,78,0.2); color: #C9A34E;
             font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
             padding: 3px 11px; border-radius: 20px; margin-bottom: 12px;
         }
@@ -186,11 +187,11 @@
             background: rgba(255,255,255,0.08);
             border: 1.5px solid rgba(255,255,255,0.2);
             border-radius: 8px; padding: 11px 13px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 0.95em; color: white; line-height: 1.6; resize: vertical;
             transition: border-color 0.2s;
         }
-        .reflexion-card textarea:focus { outline: none; border-color: #f7be00; }
+        .reflexion-card textarea:focus { outline: none; border-color: #C9A34E; }
         .reflexion-card textarea::placeholder { color: rgba(255,255,255,0.3); }
         .contador-claro { text-align: right; font-size: 0.8em; color: rgba(255,255,255,0.4); margin-top: 5px; }
 
@@ -198,23 +199,23 @@
         .botones-accion { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
         .btn-evaluar {
             flex: 1; min-width: 200px; padding: 16px 24px;
-            background: linear-gradient(135deg, #db6015, #993921);
-            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C9A34E, #8a7040);
+            color: white; font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 1em; font-weight: 700; border: none; border-radius: 12px; cursor: pointer;
             transition: transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 6px 20px rgba(219,96,21,0.35);
+            box-shadow: 0 6px 20px rgba(201,163,78,0.35);
         }
-        .btn-evaluar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(219,96,21,0.4); }
+        .btn-evaluar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(201,163,78,0.4); }
         .btn-evaluar:active { transform: translateY(0); }
         .btn-evaluar:disabled { background: linear-gradient(135deg,#aaa,#888); box-shadow:none; cursor:not-allowed; }
         .btn-reiniciar {
-            padding: 16px 22px; background: transparent; color: #993921;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 16px 22px; background: transparent; color: #4B5563;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 0.95em; font-weight: 600;
-            border: 2px solid #993921; border-radius: 12px; cursor: pointer;
+            border: 2px solid #4B5563; border-radius: 12px; cursor: pointer;
             transition: background 0.2s;
         }
-        .btn-reiniciar:hover { background: rgba(153,57,33,0.07); }
+        .btn-reiniciar:hover { background: rgba(75,85,99,0.07); }
 
         /* RESULTADO */
         .resultado-final { display: none; margin-top: 10px; }
@@ -239,10 +240,10 @@
         .criterio-calificacion { color: #333; font-size: 0.92em; line-height: 1.5; }
         .criterio-recomendacion {
             margin-top: 10px; padding: 10px 12px;
-            background: #fff9e6; border-left: 3px solid #f7be00; border-radius: 4px;
+            background: #fdf6e3; border-left: 3px solid #C9A34E; border-radius: 4px;
             font-size: 0.88em; color: #555;
         }
-        .criterio-recomendacion strong { color: #db6015; }
+        .criterio-recomendacion strong { color: #C9A34E; }
         .mensaje-general {
             background: linear-gradient(135deg, #e8f5ee, #d4ece0);
             border: 1px solid #b8dcc8; border-radius: 10px;
@@ -257,21 +258,21 @@
         .descarga-zona p { font-size: 0.9em; color: #4a6070; text-align: center; }
         .btn-descargar {
             width: 100%; padding: 16px 24px;
-            background: linear-gradient(135deg, #244b5a, #1a3848);
-            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F2747, #071b36);
+            color: white; font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
             font-size: 1em; font-weight: 700; border: none; border-radius: 12px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 6px 20px rgba(36,75,90,0.3);
+            box-shadow: 0 6px 20px rgba(15,39,71,0.3);
         }
-        .btn-descargar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(36,75,90,0.4); }
+        .btn-descargar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(15,39,71,0.4); }
         .btn-descargar:disabled { background: linear-gradient(135deg,#aaa,#888); box-shadow:none; cursor:not-allowed; }
 
         /* DOCUMENTO PARA DESCARGAR */
         #docuParaDescargar {
             position: absolute; left: -9999px; top: 0;
             width: 820px; background: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 0;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif; padding: 0;
         }
 
         .pie-pagina {
@@ -462,26 +463,26 @@
 <!-- DOCUMENTO PARA DESCARGAR (fuera de pantalla) -->
 <div id="docuParaDescargar">
     <!-- Header del reporte -->
-    <div style="background:linear-gradient(135deg,#244b5a,#993921);color:white;padding:36px 30px;text-align:center;">
-        <div style="display:inline-block;background:#f7be00;color:#244b5a;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:12px;">Liderazgo · Clase 1</div>
+    <div style="background:linear-gradient(135deg,#0F2747,#071b36);color:white;padding:36px 30px;text-align:center;">
+        <div style="display:inline-block;background:#C9A34E;color:#0F2747;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:12px;">Liderazgo · Clase 1</div>
         <h1 style="font-size:1.8em;margin-bottom:6px;">¿Qué es un Líder?</h1>
         <p style="opacity:0.85;font-size:0.9em;">Reporte de Tarea · Reflexión Personal</p>
-        <div style="background:rgba(247,190,0,0.15);border-left:4px solid #f7be00;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:18px;text-align:left;">
-            <p style="color:#f7be00;font-style:italic;font-size:0.88em;">"Si nadie te viera y nadie te aplaudiera… ¿qué tipo de líder elegirías ser igual?"</p>
+        <div style="background:rgba(201,163,78,0.15);border-left:4px solid #C9A34E;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:18px;text-align:left;">
+            <p style="color:#C9A34E;font-style:italic;font-size:0.88em;">"Si nadie te viera y nadie te aplaudiera… ¿qué tipo de líder elegirías ser igual?"</p>
         </div>
     </div>
     <!-- Info estudiante -->
     <div style="padding:24px 30px 0;">
-        <div style="display:flex;gap:30px;background:#f0f8ff;border-radius:8px;padding:14px 18px;margin-bottom:24px;">
-            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Estudiante</span><br><strong id="pdfEstudiante" style="color:#244b5a;">—</strong></div>
-            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Fecha</span><br><strong id="pdfFecha" style="color:#244b5a;">—</strong></div>
-            <div><span style="font-size:0.75em;color:#7a9aaa;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Materia</span><br><strong style="color:#244b5a;">Liderazgo</strong></div>
+        <div style="display:flex;gap:30px;background:#F7F2E8;border-radius:8px;padding:14px 18px;margin-bottom:24px;">
+            <div><span style="font-size:0.75em;color:#4B5563;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Estudiante</span><br><strong id="pdfEstudiante" style="color:#0F2747;">—</strong></div>
+            <div><span style="font-size:0.75em;color:#4B5563;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Fecha</span><br><strong id="pdfFecha" style="color:#0F2747;">—</strong></div>
+            <div><span style="font-size:0.75em;color:#4B5563;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;">Materia</span><br><strong style="color:#0F2747;">Liderazgo</strong></div>
         </div>
         <!-- Respuestas -->
-        <h3 style="color:#244b5a;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #db6015;padding-bottom:6px;">📝 Respuestas del estudiante</h3>
+        <h3 style="color:#0F2747;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #C9A34E;padding-bottom:6px;">📝 Respuestas del estudiante</h3>
         <div id="pdfRespuestas"></div>
         <!-- Retroalimentación -->
-        <h3 style="color:#244b5a;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #2e7d52;padding-bottom:6px;margin-top:24px;">💬 Retroalimentación</h3>
+        <h3 style="color:#0F2747;font-size:0.9em;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:2px solid #2e7d52;padding-bottom:6px;margin-top:24px;">💬 Retroalimentación</h3>
         <div id="pdfCriterios"></div>
         <div id="pdfMensaje" style="background:linear-gradient(135deg,#e8f5ee,#d4ece0);border:1px solid #b8dcc8;border-radius:8px;padding:14px 16px;margin-top:12px;font-weight:600;color:#1a4030;font-size:0.88em;line-height:1.5;"></div>
         <div style="margin-top:22px;padding:14px;border-top:1px solid #e0e8ef;text-align:center;font-size:0.75em;color:#aabbc8;">
@@ -634,8 +635,8 @@
 
         let respHTML = '';
         preguntasLbl.forEach((lbl, i) => {
-            respHTML += `<div style="margin-bottom:12px;padding:10px 13px;background:#f8fafc;border-left:4px solid #db6015;border-radius:0 6px 6px 0;">
-                <p style="font-size:0.72em;color:#db6015;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">${lbl}</p>
+            respHTML += `<div style="margin-bottom:12px;padding:10px 13px;background:#F7F2E8;border-left:4px solid #C9A34E;border-radius:0 6px 6px 0;">
+                <p style="font-size:0.72em;color:#C9A34E;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">${lbl}</p>
                 <p style="font-size:0.85em;color:#333;line-height:1.5;">${respuestas[i]}</p>
             </div>`;
         });
@@ -643,7 +644,7 @@
 
         let pdfCriteriosHTML = '';
         criterios.forEach(c => {
-            const recPDF = c.rec ? `<p style="margin-top:7px;padding:7px 10px;background:#fff9e6;border-left:3px solid #f7be00;font-size:0.8em;color:#555;"><strong>💡 Para seguir creciendo:</strong> ${c.rec}</p>` : '';
+            const recPDF = c.rec ? `<p style="margin-top:7px;padding:7px 10px;background:#fdf6e3;border-left:3px solid #C9A34E;font-size:0.8em;color:#555;"><strong>💡 Para seguir creciendo:</strong> ${c.rec}</p>` : '';
             pdfCriteriosHTML += `<div style="margin-bottom:10px;padding:10px 13px;background:#e8f5ee;border-left:4px solid #2e7d52;border-radius:0 6px 6px 0;">
                 <p style="font-weight:700;color:#1e6040;margin-bottom:3px;font-size:0.85em;">${c.titulo}</p>
                 <p style="font-size:0.83em;color:#333;line-height:1.5;">${c.cal}</p>
